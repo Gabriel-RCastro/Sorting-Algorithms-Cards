@@ -1,3 +1,4 @@
+
 import greenfoot.*;
 
 public class InsertionSort extends Actor
@@ -9,12 +10,13 @@ public class InsertionSort extends Actor
         for (int i = 0; i < vetor.length; i++) {
             Card aux = vetor[i]; 
             for (int j = i - 1; j >= 0 && vetor[j].getValue() > aux.getValue(); j--) {
-                Card a = new Card(vetor[j].getScale()+0.08, vetor[j].getValue());
-                Card b = new Card(vetor[j+1].getScale()+0.08, vetor[j+1].getValue());
+                Card a = new Card(vetor[j].getScale()+0.09, vetor[j].getValue());
+                Card b = new Card(vetor[j+1].getScale()+0.09, vetor[j+1].getValue());
                 
                 getWorld().addObject(a, vetor[j].getX(), vetor[j].getY());
                 getWorld().addObject(b, vetor[j+1].getX(), vetor[j+1].getY());
-                table.exibirCartas();
+                table.exibirUmaCarta(a);
+                table.exibirUmaCarta(b);
                 
                 //Troca
                 vetor[j + 1] = vetor[j];
@@ -33,10 +35,11 @@ public class InsertionSort extends Actor
                 
                 getWorld().addObject(a, vetor[j].getX(), vetor[j].getY());
                 getWorld().addObject(b, vetor[j+1].getX(), vetor[j+1].getY());
-                table.exibirCartas();
+                table.exibirUmaCarta(a);
+                table.exibirUmaCarta(b);
             }
         } 
-
+        
         return vetor;
     }
 }

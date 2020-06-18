@@ -8,15 +8,14 @@ public class BubbleSort extends Actor
         Mesa table = (Mesa)getWorld();
         
         for (int i = vetor.length - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                getWorld().repaint();
-                
-                Card a = new Card(vetor[j].getScale()+0.08, vetor[j].getValue());
-                Card b = new Card(vetor[j+1].getScale()+0.08, vetor[j+1].getValue());
+            for (int j = 0; j < i; j++) {                
+                Card a = new Card(vetor[j].getScale()+0.09, vetor[j].getValue());
+                Card b = new Card(vetor[j+1].getScale()+0.09, vetor[j+1].getValue());
                 
                 getWorld().addObject(a, vetor[j].getX(), vetor[j].getY());
                 getWorld().addObject(b, vetor[j+1].getX(), vetor[j+1].getY());
-                table.exibirCartas();
+                table.exibirUmaCarta(a);
+                table.exibirUmaCarta(b);
                 
                 //Troca
                 if (vetor[j].getValue() > vetor[j + 1].getValue()) {
@@ -38,7 +37,8 @@ public class BubbleSort extends Actor
                 
                 getWorld().addObject(a, vetor[j].getX(), vetor[j].getY());
                 getWorld().addObject(b, vetor[j+1].getX(), vetor[j+1].getY());
-                table.exibirCartas();
+                table.exibirUmaCarta(a);
+                table.exibirUmaCarta(b);
             }
         }
         

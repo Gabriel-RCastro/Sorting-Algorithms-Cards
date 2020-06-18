@@ -11,22 +11,26 @@ public class Mesa extends World
     
     public Mesa() {   
         super(1100, 580, 1);
-        addObject(misturarCartas, 915, 53);
+        criarCartas();
+        exibirCartas();
+        criarBotoes();
     }
     
     public void act() {
-        if (Greenfoot.mouseClicked(bubble)) {
-            cards = bubble.ordenar(cards);
-        }
-        if (Greenfoot.mouseClicked(insertion)) {
-            cards = insertion.ordenar(cards);
-        }
-        if (Greenfoot.mouseClicked(selection)) {
-            cards = selection.ordenar(cards);
+        if (cards[0].getValue() != 0) {
+            if (Greenfoot.mouseClicked(bubble)) {
+                cards = bubble.ordenar(cards);
+            }
+            if (Greenfoot.mouseClicked(insertion)) {
+                cards = insertion.ordenar(cards);
+            }
+            if (Greenfoot.mouseClicked(selection)) {
+                cards = selection.ordenar(cards);
+            }
         }
         if (Greenfoot.mouseClicked(misturarCartas)) {
-            criarCartas(); exibirCartas(); criarBotoes(); Greenfoot.delay(1);
-            criarCartas(misturarCartas.misturar()); exibirCartas();
+            criarCartas(misturarCartas.misturar());
+            exibirCartas();
         }
     }
     
@@ -35,7 +39,6 @@ public class Mesa extends World
             cards[x] = new Card();
         }
     }
-
     public void criarCartas(int vetor[]) {
         for (int x = 0; x < vetor.length; x++) {
             cards[x] = new Card(0.4, vetor[x]);
@@ -47,7 +50,7 @@ public class Mesa extends World
         while (x < 52) {
             for (int j = 0; j < 13; j++) {
                 addObject(cards[x++], (70 * (j+2)), posicaoY);
-                Greenfoot.delay(2);
+                repaint();
             }
             posicaoY += 100;
         }
@@ -57,5 +60,11 @@ public class Mesa extends World
         addObject(bubble, 190, 53);
         addObject(insertion, 360, 53);
         addObject(selection, 535, 53);
+        addObject(misturarCartas, 915, 53);
+    }
+    
+    public void exibirUmaCarta(Card c) {
+        addObject(c, c.getX(), c.getY());
+        Greenfoot.delay(2);
     }
 }

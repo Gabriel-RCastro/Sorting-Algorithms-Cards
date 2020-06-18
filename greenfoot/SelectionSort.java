@@ -1,3 +1,4 @@
+
 import greenfoot.*;
 
 public class SelectionSort extends Actor
@@ -8,20 +9,39 @@ public class SelectionSort extends Actor
         
         for (int i = 0; i < vetor.length - 1; i++)  
         {  
-            int index = i;                
+            int index = i;          
             
-            for (int j = i + 1; j < vetor.length; j++){  
+            Card a = new Card(vetor[i].getScale()+0.09, vetor[i].getValue()); 
+            getWorld().addObject(a, vetor[i].getX(), vetor[i].getY());
+            table.exibirUmaCarta(a);
+            
+            Card b = new Card(1,1);
+            Card c = new Card(1,1);
+            
+            for (int j = i + 1; j < vetor.length; j++) {  
+                b = new Card(vetor[j].getScale()+0.09, vetor[j].getValue());
+
+                getWorld().addObject(b, vetor[j].getX(), vetor[j].getY());
+                table.exibirUmaCarta(b);
+                
+                getWorld().removeObject(b);
+                
+                b = new Card(vetor[j].getScale(), vetor[j].getValue());
+                
+                getWorld().addObject(b, vetor[j].getX(), vetor[j].getY());
+                table.exibirUmaCarta(b);
+                
                 if (vetor[j].getValue() < vetor[index].getValue()){  
                     index = j;
+                    
+                    getWorld().removeObject(c);
+                    
+                    c = new Card(vetor[index].getScale()+0.09, vetor[index].getValue());
+                    getWorld().addObject(c, vetor[index].getX(), vetor[index].getY());
+                    table.exibirUmaCarta(c);
                 }
-            }  
-            
-            Card a = new Card(vetor[i].getScale()+0.08, vetor[i].getValue());
-            Card b = new Card(vetor[index].getScale()+0.08, vetor[index].getValue());
-            
-            getWorld().addObject(a, vetor[i].getX(), vetor[i].getY());
-            getWorld().addObject(b, vetor[index].getX(), vetor[index].getY());
-            table.exibirCartas();
+            }     
+            getWorld().removeObject(c);
             
             //Troca
             Card maiorNumero = vetor[index];   
@@ -32,7 +52,7 @@ public class SelectionSort extends Actor
             l = vetor[index].getY();
             vetor[index].setLocation(vetor[i].getX(), vetor[i].getY());
             vetor[i].setLocation(k, l);
-        
+            
             getWorld().removeObject(a);
             getWorld().removeObject(b);
             
@@ -41,9 +61,11 @@ public class SelectionSort extends Actor
             
             getWorld().addObject(a, vetor[i].getX(), vetor[i].getY());
             getWorld().addObject(b, vetor[index].getX(), vetor[index].getY());
-            table.exibirCartas();
+            
+            table.exibirUmaCarta(a);
+            table.exibirUmaCarta(b);
         }
-        
+      
         return vetor;
     }
 }

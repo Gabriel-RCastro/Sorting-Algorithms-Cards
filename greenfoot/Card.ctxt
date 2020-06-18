@@ -1,11 +1,9 @@
 #BlueJ class context
 comment0.target=Card
-comment1.params=
-comment1.target=Card()
-comment2.params=_scale\ _value
-comment2.target=Card(double,\ int)
+comment1.params=_scale\ _value
+comment1.target=Card(double,\ int)
+comment2.params=
+comment2.target=int\ getValue()
 comment3.params=
-comment3.target=int\ getValue()
-comment4.params=
-comment4.target=double\ getScale()
-numComments=5
+comment3.target=double\ getScale()
+numComments=4
